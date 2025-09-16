@@ -1,0 +1,279 @@
+/* Mentor Profile - Figma Design Replication */
+.mentor-profile {
+  background: white;
+  min-height: calc(100vh - 120px);
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Header Section */
+.header-section {
+  padding: 61px 0 0 120px;
+  position: relative;
+}
+
+.main-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: #020061;
+  margin: 0 0 9px 0;
+  text-transform: capitalize;
+  line-height: normal;
+}
+
+.subtitle {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #B2B2B2;
+  margin: 0;
+  line-height: normal;
+}
+
+/* Profile Content */
+.profile-content {
+  display: flex;
+  margin: 149px 76px 0 76px;
+  gap: 77px;
+  min-height: 439px;
+}
+
+/* Work Image Container */
+.work-image-container {
+  flex: 0 0 471px;
+}
+
+.work-image {
+  width: 100%;
+  height: 439px;
+  border-radius: 4px;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Profile Details Container */
+.profile-details {
+  flex: 1;
+  background: white;
+  border: 2px solid #E9EBF3;
+  border-radius: 10px;
+  box-shadow: 0px 4px 9.4px 0px rgba(0, 0, 0, 0.25);
+  padding: 51px;
+  position: relative;
+  max-width: 694px;
+}
+
+.profile-info {
+  display: flex;
+  gap: 60.71px;
+  margin-bottom: 41px;
+}
+
+/* Profile Image */
+.profile-image-container {
+  flex: 0 0 209px;
+  align-self: flex-start;
+  margin-top: 63px;
+}
+
+.profile-image {
+  width: 209px;
+  height: 212px;
+  border-radius: 4px;
+  object-fit: cover;
+  background-size: 100% 137.76%;
+  background-position: 0% 21.13%;
+}
+
+/* Text Content */
+.text-content {
+  flex: 1;
+  margin-top: 41px;
+}
+
+.mentor-name {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #020061;
+  margin: 0 0 8px 0;
+  line-height: normal;
+  width: 128.929px;
+}
+
+.mentor-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #5B5AA2;
+  margin: 0 0 35px 0;
+  line-height: normal;
+  width: 183.214px;
+}
+
+.mentor-description {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: grey;
+  text-align: justify;
+  line-height: normal;
+  margin: 0;
+  width: 324px;
+}
+
+/* Action Section */
+.action-section {
+  position: absolute;
+  bottom: 82px;
+  left: 102px;
+}
+
+.edit-btn {
+  background: #020061;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: normal;
+  height: 31px;
+  width: 121px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn:hover {
+  background: #0d0a5c;
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header-section {
+    padding-left: 40px;
+  }
+  
+  .profile-content {
+    margin-left: 40px;
+    margin-right: 40px;
+    gap: 40px;
+  }
+  
+  .work-image-container {
+    flex: 0 0 350px;
+  }
+  
+  .work-image {
+    height: 350px;
+  }
+  
+  .profile-details {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    padding-left: 20px;
+  }
+  
+  .main-title {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+  }
+  
+  .profile-content {
+    flex-direction: column;
+    margin: 40px 20px 0 20px;
+    gap: 20px;
+  }
+  
+  .work-image-container {
+    flex: none;
+    width: 100%;
+  }
+  
+  .work-image {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .profile-details {
+    padding: 30px 20px;
+  }
+  
+  .profile-info {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .profile-image-container {
+    flex: none;
+    margin: 0 auto;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .text-content {
+    margin-top: 0;
+  }
+  
+  .mentor-name,
+  .mentor-title,
+  .mentor-description {
+    width: auto;
+    max-width: none;
+  }
+  
+  .mentor-description {
+    text-align: left;
+  }
+  
+  .action-section {
+    position: static;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .edit-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-content {
+    margin: 30px 15px 0 15px;
+  }
+  
+  .profile-details {
+    padding: 20px 15px;
+  }
+  
+  .mentor-name {
+    font-size: 20px;
+  }
+  
+  .mentor-title {
+    font-size: 14px;
+  }
+  
+  .mentor-description {
+    font-size: 11px;
+  }
+}

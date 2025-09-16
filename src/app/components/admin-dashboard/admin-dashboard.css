@@ -1,0 +1,391 @@
+/* Admin Dashboard - Figma Design Replication */
+.admin-dashboard {
+  background: white;
+  min-height: calc(100vh - 120px);
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Header Section */
+.header-section {
+  padding: 51px 0 0 120px;
+  position: relative;
+}
+
+.main-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: #020061;
+  margin: 0 0 9px 0;
+  text-transform: capitalize;
+  line-height: normal;
+}
+
+.subtitle {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #B2B2B2;
+  margin: 0 0 65px 0;
+  line-height: normal;
+}
+
+.add-users-btn {
+  background: #020061;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: normal;
+  height: 42px;
+  width: 188px;
+}
+
+/* Add User Section */
+.add-user-section {
+  margin: 76px 120px 0 120px;
+  background: white;
+  border: 2px solid #E9EBF3;
+  border-radius: 10px;
+  box-shadow: 0px 4px 9.4px 0px rgba(0, 0, 0, 0.25);
+  padding: 29px 31px 41px 31px;
+  position: relative;
+}
+
+.section-title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #020061;
+  margin: 0 0 36px 0;
+  text-transform: capitalize;
+  line-height: normal;
+}
+
+.add-user-form {
+  position: relative;
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 39px;
+  margin-bottom: 21px;
+}
+
+.input-group {
+  flex: 0 0 calc(50% - 19.5px);
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  height: 42px;
+  border: 2px solid #020061;
+  border-radius: 10px;
+  padding: 0 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #8F8F8F;
+  background: white;
+  line-height: normal;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder,
+.form-select option {
+  color: #8F8F8F;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #020061;
+}
+
+.add-btn {
+  background: #020061;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: normal;
+  height: 42px;
+  width: 171px;
+  display: block;
+  margin-left: auto;
+}
+
+.add-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Users Section */
+.users-section {
+  margin: 34px 120px 0 120px;
+  background: white;
+  border: 2px solid #E9EBF3;
+  border-radius: 10px;
+  box-shadow: 0px 4px 9.4px 0px rgba(0, 0, 0, 0.25);
+  padding: 10px 31px 31px 31px;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-top: 29px;
+}
+
+.section-header .section-title {
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 39px;
+  align-items: center;
+}
+
+.filter-select,
+.search-input {
+  height: 40px;
+  border: 2px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 0 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #8F8F8F;
+  background: white;
+  line-height: normal;
+}
+
+.filter-select {
+  width: 107px;
+}
+
+.search-input {
+  width: 220px;
+}
+
+.search-input::placeholder {
+  color: #8F8F8F;
+}
+
+/* Table Styles */
+.table-container {
+  position: relative;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.users-table {
+  width: 100%;
+  min-width: 1200px;
+  border-collapse: collapse;
+  font-family: 'Source Sans Pro', sans-serif;
+  table-layout: fixed;
+}
+
+.table-header {
+  background: #D9D9D9;
+  height: 27px;
+}
+
+.table-header th {
+  font-weight: 600;
+  font-size: 16px;
+  color: #020061;
+  text-align: left;
+  padding: 5.5px 10px;
+  line-height: normal;
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-header th:first-child {
+  width: 8%;
+  padding-left: 37px;
+}
+
+.table-header th:nth-child(2) {
+  width: 20%;
+}
+
+.table-header th:nth-child(3) {
+  width: 25%;
+}
+
+.table-header th:nth-child(4) {
+  width: 15%;
+}
+
+.table-header th:nth-child(5) {
+  width: 15%;
+}
+
+.table-header th:nth-child(6) {
+  width: 17%;
+}
+
+.table-row {
+  height: 43px;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.table-row td {
+  font-weight: 600;
+  font-size: 16px;
+  color: #020061;
+  padding: 13.5px 10px;
+  line-height: normal;
+  border: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-row td:first-child {
+  padding-left: 37px;
+}
+
+.delete-btn {
+  background: #FF9F84;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: normal;
+  height: 16px;
+  width: 121px;
+  text-align: center;
+}
+
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header-section {
+    padding-left: 40px;
+  }
+  
+  .add-user-section,
+  .users-section {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  .users-table {
+    min-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    padding-left: 20px;
+  }
+  
+  .main-title {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+  }
+  
+  .add-user-section,
+  .users-section {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+  }
+  
+  .form-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-group {
+    flex: 1;
+  }
+  
+  .add-btn {
+    margin-top: 20px;
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .filters {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .filter-select,
+  .search-input {
+    width: 100%;
+  }
+  
+  .users-table {
+    min-width: 600px;
+    font-size: 14px;
+  }
+  
+  .table-header th,
+  .table-row td {
+    padding: 8px 5px !important;
+    font-size: 12px;
+  }
+  
+  .table-header th:first-child,
+  .table-row td:first-child {
+    padding-left: 10px !important;
+  }
+  
+  .delete-btn {
+    width: 60px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .users-table {
+    min-width: 500px;
+  }
+  
+  .table-header th,
+  .table-row td {
+    font-size: 10px;
+    padding: 5px 3px !important;
+  }
+  
+  .delete-btn {
+    width: 50px;
+    height: 14px;
+    font-size: 9px;
+  }
+}

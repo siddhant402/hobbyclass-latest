@@ -1,0 +1,163 @@
+.navbar {
+  background-color: #020061;
+  height: 120px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 100px;
+  position: relative;
+}
+
+.navbar-brand h1 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  color: white;
+  margin: 0;
+  line-height: normal;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  line-height: normal;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.active {
+  color: white;
+}
+
+/* User Section Styles */
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.welcome-text {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  line-height: normal;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: normal;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 28px;
+  }
+  
+  .navbar-nav {
+    gap: 40px;
+  }
+  
+  .nav-link {
+    font-size: 20px;
+  }
+
+  .welcome-text {
+    font-size: 16px;
+  }
+
+  .logout-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .user-section {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 15px;
+    height: 70px;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 24px;
+  }
+  
+  .navbar-nav {
+    gap: 20px;
+  }
+  
+  .nav-link {
+    font-size: 18px;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar {
+    height: 60px;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 20px;
+  }
+  
+  .nav-link {
+    font-size: 16px;
+  }
+
+  .welcome-text {
+    display: none; /* Hide welcome text on very small screens */
+  }
+
+  .logout-btn {
+    font-size: 11px;
+  }
+}

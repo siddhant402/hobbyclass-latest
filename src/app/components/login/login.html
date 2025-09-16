@@ -1,0 +1,67 @@
+<div class="login-container">
+  <!-- Hero Image -->
+  <div class="hero-image">
+    <img src="assets/images/login/32bd959fa473879debb30c6ee9eb1315f2a87750.png" alt="Students engaged in hobby classes - painting and learning together">
+  </div>
+  
+  <!-- Login Form -->
+  <div class="login-form">
+    <div class="form-header">
+      <h1>Login</h1>
+      <p>Welcome back! Please enter your details.</p>
+    </div>
+    
+    <form class="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          placeholder="Username"
+          [(ngModel)]="formData.username"
+          required
+          class="form-input">
+      </div>
+      
+      <div class="input-group">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Password"
+          [(ngModel)]="formData.password"
+          required
+          class="form-input">
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Login Instructions -->
+      <div class="login-instructions">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>Admin: username = <code>admin</code>, password = <code>admin123</code></p>
+        <p>Regular users: password = <code>demo123</code></p>
+      </div>
+      
+      <button type="submit" class="submit-btn" [disabled]="!loginForm.form.valid || isLoading">
+        <span *ngIf="!isLoading">Sign In</span>
+        <span *ngIf="isLoading">Signing In...</span>
+      </button>
+    </form>
+    
+    <div class="form-links">
+      <div class="register-link">
+        <img src="assets/images/login/1d587670149ff9638d643edd212be32f955e1750.svg" alt="Registration link checkmark" class="check-icon">
+        <span>Don't have an account? <a href="#" class="link" (click)="onRegister()">Register here</a></span>
+      </div>
+      
+      <div class="forgot-link">
+        <img src="assets/images/login/1d587670149ff9638d643edd212be32f955e1750.svg" alt="Forgot password link checkmark" class="check-icon">
+        <a href="#" class="link" (click)="onForgotPassword()">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+</div>

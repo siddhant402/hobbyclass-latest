@@ -1,0 +1,235 @@
+<div class="mentor-dashboard">
+  <!-- Main Content -->
+  <div class="dashboard-content">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Mentor Dashboard</h1>
+      <p class="dashboard-subtitle">Manage your classes and track student enrollments</p>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-number">{{ dashboardStats.totalClasses }}</div>
+        <div class="stat-label">Total Classes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ dashboardStats.activeClasses }}</div>
+        <div class="stat-label">Active Classes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ dashboardStats.studentsEnrolled }}</div>
+        <div class="stat-label">Students Enrolled</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" aria-label="Add a new class to your teaching portfolio">Add a new Class</button>
+      <button class="btn btn-secondary" (click)="onRefreshData()" aria-label="Refresh dashboard data and statistics">Refresh Data</button>
+    </div>
+
+    <!-- Add New Class Form -->
+    <div class="add-class-section">
+      <h2 class="section-title">Add a New Class</h2>
+      <form class="add-class-form" (ngSubmit)="onAddClass()">
+        <div class="form-row">
+          <div class="form-group">
+            <input 
+              type="text" 
+              [(ngModel)]="newClass.title" 
+              name="title"
+              placeholder="Class Title" 
+              class="form-input"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <select 
+              [(ngModel)]="newClass.category" 
+              name="category"
+              class="form-input"
+              required
+            >
+              <option value="" disabled>Class Category</option>
+              <option value="Art">Art</option>
+              <option value="Music">Music</option>
+              <option value="Cooking">Cooking</option>
+              <option value="Technology">Technology</option>
+              <option value="Sports">Sports</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <input 
+              type="date" 
+              [(ngModel)]="newClass.date" 
+              name="date"
+              placeholder="Date" 
+              class="form-input"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input 
+              type="time" 
+              [(ngModel)]="newClass.time" 
+              name="time"
+              placeholder="Time" 
+              class="form-input"
+              required
+            />
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <input 
+              type="text" 
+              [(ngModel)]="newClass.duration" 
+              name="duration"
+              placeholder="Duration" 
+              class="form-input"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input 
+              type="number" 
+              [(ngModel)]="newClass.maxStudents" 
+              name="maxStudents"
+              placeholder="Max Students" 
+              class="form-input"
+              required
+            />
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group full-width">
+            <select 
+              [(ngModel)]="newClass.status" 
+              name="status"
+              class="form-input"
+              required
+            >
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group full-width">
+            <textarea 
+              [(ngModel)]="newClass.description" 
+              name="description"
+              placeholder="Class Description" 
+              class="form-input description-input"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group full-width">
+            <input 
+              type="url" 
+              [(ngModel)]="newClass.imageUrl" 
+              name="imageUrl"
+              placeholder="Image URL" 
+              class="form-input"
+            />
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary submit-btn" aria-label="Add new class to your teaching portfolio">Add</button>
+      </form>
+    </div>
+
+    <!-- My Classes Section -->
+    <div class="my-classes-section">
+      <div class="classes-header">
+        <h2 class="section-title">My Classes</h2>
+        <div class="classes-filters">
+          <select 
+            [(ngModel)]="statusFilter" 
+            (ngModelChange)="onStatusFilterChange()"
+            class="filter-input"
+            aria-label="Filter classes by status"
+          >
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="pending">Pending</option>
+          </select>
+          <input 
+            type="text"
+            [(ngModel)]="searchTerm"
+            (input)="onSearch()"
+            placeholder="Search Classes"
+            class="filter-input"
+            aria-label="Search classes by name or category"
+          />
+        </div>
+      </div>
+
+      <!-- Classes Grid -->
+      <div class="classes-grid">
+        @for (mentorClass of filteredClasses; track mentorClass.id) {
+          <div class="class-card">
+            <div class="class-status" [ngClass]="getStatusClass(mentorClass.status)">
+              {{ mentorClass.status | titlecase }}
+            </div>
+            
+            <div 
+              class="class-image" 
+              [style.background-image]="'url(' + mentorClass.imageUrl + ')'"
+              [attr.aria-label]="'Class image for ' + mentorClass.title + ' - ' + mentorClass.category"
+              role="img">
+            </div>
+            
+            <div class="class-info">
+              <h3 class="class-title">{{ mentorClass.title }}</h3>
+              <div class="class-category">{{ mentorClass.category }}</div>
+              <p class="class-description">{{ mentorClass.description }}</p>
+              
+              <div class="class-details">
+                <div class="detail-item">
+                  <div class="detail-date">{{ mentorClass.date }}</div>
+                  <div class="detail-time">{{ mentorClass.time }}</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-duration">{{ mentorClass.duration }}</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-capacity">Max: {{ mentorClass.maxStudents }}</div>
+                </div>
+              </div>
+              
+              <div class="class-actions">
+                <button class="action-btn edit-btn" (click)="onEditClass(mentorClass.id)" [attr.aria-label]="'Edit ' + mentorClass.title + ' class'">Edit</button>
+                <button class="action-btn delete-btn" (click)="onDeleteClass(mentorClass.id)" [attr.aria-label]="'Delete ' + mentorClass.title + ' class'">Delete</button>
+                @if (mentorClass.status === 'active') {
+                  <button class="action-btn deactivate-btn" (click)="onDeactivateClass(mentorClass.id)" [attr.aria-label]="'Deactivate ' + mentorClass.title + ' class'">Deactivate</button>
+                } @else {
+                  <button class="action-btn activate-btn" (click)="onActivateClass(mentorClass.id)" [attr.aria-label]="'Activate ' + mentorClass.title + ' class'">Activate</button>
+                }
+              </div>
+            </div>
+          </div>
+        }
+        
+        @if (filteredClasses.length === 0) {
+          <div class="no-classes">
+            <p>No classes found matching your criteria.</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

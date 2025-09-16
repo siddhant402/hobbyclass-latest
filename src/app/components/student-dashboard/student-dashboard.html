@@ -1,0 +1,195 @@
+<div class="student-dashboard">
+  <!-- Top Navigation -->
+  <nav class="student-nav">
+    <div class="nav-left">
+      <img src="assets/images/student-dashboard/logo.png" alt="HobbyClass Logo" class="logo">
+      <span class="app-title">HOBBYCLASS</span>
+    </div>
+    <div class="nav-right">
+      <div class="user-info">
+        <span class="user-name">{{ currentUser?.name || 'Student' }}</span>
+        <div class="user-avatar">
+          <img src="assets/images/student-dashboard/avatar-placeholder.png" alt="User Avatar">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="dashboard-content">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+      <h1>Find Your Next Hobby Class</h1>
+      <p>Discover amazing classes from talented mentors around the world</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">{{ dashboardStats.totalClasses }}</div>
+        <div class="stat-label">Total Classes</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-value">{{ dashboardStats.availableNow }}</div>
+        <div class="stat-label">Available Now</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ dashboardStats.matchingSearch }}</div>
+        <div class="stat-label">Matching Search</div>
+      </div>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="filters-section">
+      <h2>Browse Classes</h2>
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="specialization">Specialization</label>
+          <select id="specialization" 
+                  [(ngModel)]="selectedSpecialization" 
+                  (ngModelChange)="onSpecializationChange()"
+                  class="filter-select">
+            @for (spec of specializations; track spec.value) {
+              <option [value]="spec.value">{{ spec.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="availability">Mentor Availability</label>
+          <select id="availability" 
+                  [(ngModel)]="selectedAvailability" 
+                  (ngModelChange)="onAvailabilityChange()"
+                  class="filter-select">
+            @for (mentor of mentorFilters; track mentor.value) {
+              <option [value]="mentor.value">{{ mentor.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="search-group">
+          <div class="search-container">
+            <input type="text" 
+                   placeholder="Search classes or mentors..." 
+                   [(ngModel)]="searchTerm"
+                   (input)="onSearch()"
+                   class="search-input"
+                   aria-label="Search classes or mentors">
+            <button class="search-btn" type="button" (click)="onSearch()" aria-label="Search">
+              <img src="assets/images/student-dashboard/search-icon.png" alt="Search" class="search-icon">
+            </button>
+          </div>
+        </div>
+
+        <button class="reset-btn" (click)="resetFilters()">Reset Filters</button>
+      </div>
+    </div>
+
+    <!-- Classes Table -->
+    <div class="classes-section">
+      <div class="table-container">
+        <table class="classes-table">
+          <thead>
+            <tr>
+              <th>Class Name</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Mentor</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (filteredClasses.length === 0) {
+              <tr class="no-data">
+                <td colspan="7">
+                  <div class="no-results">
+                    <img src="assets/images/student-dashboard/no-results.png" alt="No classes found" class="no-results-icon">
+                    <p>No classes found matching your criteria</p>
+                    <button class="reset-btn" (click)="resetFilters()">Reset Filters</button>
+                  </div>
+                </td>
+              </tr>
+            } @else {
+              @for (class of filteredClasses; track class.id) {
+                <tr class="class-row">
+                  <td class="class-name-cell">
+                    <div class="class-info">
+                      <div class="class-name">{{ class.name }}</div>
+                      <div class="class-description">{{ class.description }}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="category-tag" [ngClass]="getCategoryClass(class.category)">
+                      {{ class.category | titlecase }}
+                    </span>
+                  </td>
+                  <td class="date-cell">{{ class.date }}</td>
+                  <td class="time-cell">{{ class.time }}</td>
+                  <td>
+                    <span class="status-badge" [ngClass]="getStatusClass(class.status)">
+                      {{ getStatusLabel(class.status) }}
+                    </span>
+                  </td>
+                  <td class="mentor-cell">
+                    <div class="mentor-info">
+                      <div class="mentor-avatar">
+                        <img src="assets/images/student-dashboard/mentor-avatar.png" alt="Mentor Avatar">
+                      </div>
+                      <span class="mentor-name">{{ class.mentorName }}</span>
+                    </div>
+                  </td>
+                  <td class="actions-cell">
+                    <div class="action-buttons">
+                      @if (class.status === 'available' && !class.enrolled) {
+                        <button class="choose-btn" 
+                                (click)="onChooseClass(class.id)"
+                                aria-label="Choose class {{ class.name }}">
+                          Choose
+                        </button>
+                      } @else if (class.enrolled) {
+                        <span class="enrolled-text">Enrolled</span>
+                      } @else {
+                        <button class="unavailable-btn" disabled>
+                          Unavailable
+                        </button>
+                      }
+                      <button class="view-mentor-btn" 
+                              (click)="onViewMentorProfile(class.id)"
+                              aria-label="View mentor profile for {{ class.mentorName }}">
+                        View Mentor
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-cards">
+        <div class="action-card">
+          <img src="assets/images/student-dashboard/browse-icon.png" alt="Browse classes icon" class="action-icon">
+          <h4>Browse All Classes</h4>
+          <p>Explore all available hobby classes</p>
+        </div>
+        <div class="action-card">
+          <img src="assets/images/student-dashboard/schedule-icon.png" alt="My schedule icon" class="action-icon">
+          <h4>My Schedule</h4>
+          <p>View your enrolled classes</p>
+        </div>
+        <div class="action-card">
+          <img src="assets/images/student-dashboard/favorites-icon.png" alt="Favorites icon" class="action-icon">
+          <h4>Favorites</h4>
+          <p>Your saved favorite classes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

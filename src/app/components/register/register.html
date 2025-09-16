@@ -1,0 +1,60 @@
+<div class="register-container">
+  <!-- Decorative background images -->
+  <div class="decorative-images" aria-hidden="true">
+    <div class="decorative-img decorative-img-1" aria-hidden="true"></div>
+    <div class="decorative-img decorative-img-2" aria-hidden="true"></div>
+    <div class="decorative-img decorative-img-3" aria-hidden="true"></div>
+  </div>
+  
+  <!-- Registration Form -->
+  <div class="register-form">
+    <div class="form-header">
+      <h1>Register</h1>
+      <p>Create your account to get started.</p>
+    </div>
+    
+    <form class="form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="input-group">
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          placeholder="Username"
+          [(ngModel)]="formData.username"
+          required
+          class="form-input">
+      </div>
+      
+      <div class="input-group">
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Email"
+          [(ngModel)]="formData.email"
+          required
+          class="form-input">
+      </div>
+      
+      <div class="input-group">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Password"
+          [(ngModel)]="formData.password"
+          required
+          class="form-input">
+      </div>
+      
+      <button type="submit" class="submit-btn" [disabled]="!registerForm.form.valid">
+        Create Account
+      </button>
+    </form>
+    
+    <div class="login-link">
+      <img src="assets/images/1d587670149ff9638d643edd212be32f955e1750.svg" alt="Registration confirmation checkmark" class="check-icon">
+      <span>Already have an account? <a href="#" class="link" (click)="onLogin()">Login here</a></span>
+    </div>
+  </div>
+</div>

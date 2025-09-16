@@ -1,0 +1,39 @@
+<div class="mentor-profile">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="main-title">My Profile</h1>
+    <p class="subtitle">View your profile and classes information</p>
+  </div>
+
+  <!-- Profile Content -->
+  <div class="profile-content">
+    <!-- Left Side - Work Image -->
+    <div class="work-image-container">
+      <img [src]="mentorData.workImage" alt="Mentor's artwork demonstrating teaching skills and expertise" class="work-image">
+    </div>
+
+    <!-- Right Side - Profile Details -->
+    <div class="profile-details">
+      <div class="profile-info">
+        <!-- Profile Image -->
+        <div class="profile-image-container">
+          <img [src]="mentorData.profileImage" alt="Profile photo of mentor {{ mentorData.name }}" class="profile-image">
+        </div>
+
+        <!-- Text Content -->
+        <div class="text-content">
+          <h2 class="mentor-name">{{ mentorData.name }}</h2>
+          <p class="mentor-title">{{ mentorData.title }}</p>
+          <p class="mentor-description">{{ mentorData.description }}</p>
+        </div>
+      </div>
+
+      <!-- Edit Button -->
+      <div class="action-section">
+        <button class="edit-btn" (click)="toggleEditMode()" aria-label="Edit your mentor profile information">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

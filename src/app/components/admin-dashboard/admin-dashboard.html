@@ -1,0 +1,114 @@
+<div class="admin-dashboard">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1 class="main-title">Admin Dashboard</h1>
+    <p class="subtitle">Manage Users and Mentors</p>
+    <button class="add-users-btn" (click)="toggleAddUserForm()">Add new users</button>
+  </div>
+
+  <!-- Add New User Form -->
+  @if (showAddUserForm) {
+    <div class="add-user-section">
+      <h2 class="section-title">Add New User</h2>
+      <form #addUserForm="ngForm" (ngSubmit)="onAddUser(addUserForm)" class="add-user-form">
+        <div class="form-grid">
+          <div class="input-group">
+            <input 
+              type="text" 
+              name="fullName"
+              [(ngModel)]="newUser.name"
+              placeholder="Full Name"
+              required
+              class="form-input">
+          </div>
+          <div class="input-group">
+            <input 
+              type="email" 
+              name="email"
+              [(ngModel)]="newUser.email"
+              placeholder="Email"
+              required
+              class="form-input">
+          </div>
+          <div class="input-group">
+            <input 
+              type="password" 
+              name="password"
+              [(ngModel)]="newUser.password"
+              placeholder="Password"
+              required
+              class="form-input">
+          </div>
+          <div class="input-group">
+            <select 
+              name="role"
+              [(ngModel)]="newUser.role"
+              required
+              class="form-select">
+              <option value="">Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="mentor">Mentor</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="add-btn" [disabled]="!addUserForm.form.valid">Add</button>
+      </form>
+    </div>
+  }
+
+  <!-- Users Table Section -->
+  <div class="users-section">
+    <div class="section-header">
+      <h2 class="section-title">Registered Users ({{users.length}})</h2>
+      <div class="filters">
+        <select class="filter-select" [(ngModel)]="selectedRole" (change)="filterUsers()">
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
+          <option value="mentor">Mentor</option>
+          <option value="student">Student</option>
+        </select>
+        <input 
+          type="text" 
+          class="search-input"
+          [(ngModel)]="searchTerm"
+          (input)="filterUsers()"
+          placeholder="Search by email or name...">
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="users-table">
+        <thead>
+          <tr class="table-header">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of filteredUsers; track user.id) {
+            <tr class="table-row">
+              <td>{{user.id}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role | titlecase}}</td>
+              <td>{{user.status | titlecase}}</td>
+              <td>
+                <button 
+                  class="delete-btn" 
+                  (click)="deleteUser(user.id)"
+                  [disabled]="user.role === 'admin'">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

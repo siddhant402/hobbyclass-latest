@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <h1>HobbyClass</h1>
+  </div>
+  <div class="navbar-nav">
+    <!-- Show these links when user is NOT logged in -->
+    <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <a routerLink="/register" routerLinkActive="active" class="nav-link">Register</a>
+      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+    </ng-container>
+
+    <!-- Show these links when user IS logged in -->
+    <ng-container *ngIf="isLoggedIn$ | async">
+      <!-- Admin Dashboard link (only for admins) -->
+      <a *ngIf="isAdmin()" routerLink="/admin-dashboard" routerLinkActive="active" class="nav-link">
+        Dashboard
+      </a>
+      
+      <!-- Mentor links (only for mentors) -->
+      <ng-container *ngIf="isMentor()">
+        <a routerLink="/mentor-dashboard" routerLinkActive="active" class="nav-link">
+          Mentor Dashboard
+        </a>
+        <a routerLink="/mentor-profile" routerLinkActive="active" class="nav-link">
+          My Profile
+        </a>
+      </ng-container>
+      
+      <!-- User info and logout -->
+      <div class="user-section">
+        <span class="welcome-text">Welcome, {{ (currentUser$ | async)?.name }}!</span>
+        <button class="logout-btn" (click)="logout()" aria-label="Logout from your account">Logout</button>
+      </div>
+    </ng-container>
+  </div>
+</nav>
